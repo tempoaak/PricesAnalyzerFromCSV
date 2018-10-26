@@ -3,8 +3,8 @@ package com.akartkam.priceanalyzer;
 public interface Constants {
 	public static final String DEFAULT_VERSION = "3";
     //по умолчанию, если при запуске не указана папка с файлами, используем текущую
-	//public static final String DEFAULT_INPUT_DIR = System.getProperty("user.dir");
-	public static final String DEFAULT_INPUT_DIR = "..\\samples\\";
+	public static final String DEFAULT_INPUT_DIR = System.getProperty("user.dir");
+	//public static final String DEFAULT_INPUT_DIR = "..\\samples\\";
 	//Количество fake строк в каждом тестовом файле
 	public static final int FAKE_ROWS_COUNT = 100000;
 	//Количество тестовых файлов
