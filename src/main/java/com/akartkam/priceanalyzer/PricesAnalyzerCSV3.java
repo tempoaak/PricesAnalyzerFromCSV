@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.FlatFileItemWriter;
+import org.springframework.core.io.FileSystemResource;
 
 public class PricesAnalyzerCSV3 {
 	public static void execute(File fDirScan)  {
@@ -138,6 +139,7 @@ class FileProcessor1 implements Runnable {
 	      try
 	      {
 	         boolean done = false;
+			 FlatFileItemReader<DomainObject> reader = FlatFileItemFactory.reader();
 	         while (!done) {
 	            File file = queue.take();
 	            if (file == FileProvider1.SING) { 
@@ -146,9 +148,8 @@ class FileProcessor1 implements Runnable {
 	            	cdl.countDown();
 	            } else {
 	            	//Обработка файла csv
-	    			FlatFileItemReader<DomainObject> reader = FlatFileItemFactory.reader(file);
 	    			DomainObject d;
-
+					reader.setResource(new FileSystemResource(file));
 	    			reader.open(context);
 	    			System.out.println("Обработка файла... "+file.getName());
 	    			while ((d = reader.read()) != null) {

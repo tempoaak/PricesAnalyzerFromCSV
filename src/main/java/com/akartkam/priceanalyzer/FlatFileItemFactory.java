@@ -16,12 +16,10 @@ import org.springframework.core.io.FileSystemResource;
 
 public class FlatFileItemFactory {
 
-
-	public static FlatFileItemReader<DomainObject> reader(File file)
+	public static FlatFileItemReader<DomainObject> reader()
 	{
 	    FlatFileItemReader<DomainObject> reader = new FlatFileItemReader<>();
-	    reader.setResource(new FileSystemResource(file));
-	    reader.setLinesToSkip(1);  
+	    reader.setLinesToSkip(1);
 	    reader.setLineMapper(new DefaultLineMapper<DomainObject>() {
 	        {
 	            setLineTokenizer(new DelimitedLineTokenizer() {
